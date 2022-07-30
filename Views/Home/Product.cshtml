@@ -12,8 +12,14 @@
 			<h3 class="text-primary ">$ @Model.Price</h3>
 		</div>
 		<p class="text-muted">@Model.Summary</p>
-		<a class="text-info text-capitalize" asp-controller="Home" asp-action="Index">
-			back to products
-		</a>
+		<div class="d-flex justify-content-between align-items-center">
+			<div>
+				<a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+				<a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+			</div>
+			<a class="text-info text-capitalize" asp-controller="Home" asp-action="Index">
+				back to products
+			</a>
+		</div>
 	</div>
 </div>
