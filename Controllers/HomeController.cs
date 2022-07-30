@@ -72,6 +72,7 @@ public class HomeController : Controller
 				return View(product);
 			}
 		}
+		TempData["success"] = "Created product successfully!";
 		return RedirectToAction("Index");
 	}
 
@@ -120,6 +121,7 @@ public class HomeController : Controller
 				return View(existingProduct);
 			}
 		}
+		TempData["success"] = "Edited product successfully!";
 
 		return RedirectToAction("Product", new { id = existingProduct.Id });
 	}
@@ -145,6 +147,7 @@ public class HomeController : Controller
 			throw new AppException("No product found with that ID.", 404);
 		}
 		await _service.DeleteProductByIdAsync(id);
+		TempData["danger"] = "deleted product successfully!";
 		return RedirectToAction("Index");
 	}
 

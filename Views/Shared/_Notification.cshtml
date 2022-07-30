@@ -1,0 +1,14 @@
+@if (TempData["success"] is not null)
+{
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script type="text/javascript">
+	showAlert("success", "@TempData["success"]");
+</script>
+}
+@if (TempData["danger"] is not null)
+{
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script type="text/javascript">
+	showAlert("danger", "@TempData["danger"]");
+</script>
+}

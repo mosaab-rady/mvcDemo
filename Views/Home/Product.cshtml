@@ -1,18 +1,18 @@
 @model Product
 @{
-    ViewData["Title"] = "Product Details";
+	ViewData["Title"] = "Product Details";
 }
 
 
-<div class="container d-flex justify-content-start">
+<div class="container d-flex justify-content-center">
 	<div class="col-6">
-		<h1 class="text-info text-capitalize" >@Model.Name Product</h1>
-		<div class="d-flex justify-content-between" >
-			<h3 class="text-primary text-capitalize" >@Model.Type</h3>
+		<h1 class="text-info text-capitalize">@Model.Name Product</h1>
+		<div class="d-flex justify-content-between">
+			<h3 class="text-primary text-capitalize">@Model.Type</h3>
 			<h3 class="text-primary ">$ @Model.Price</h3>
 		</div>
-		<p class="text-muted" >@Model.Summary</p>
-		<a class="text-info text-capitalize" asp-controller="Home" asp-action="Index" >
+		<p class="text-muted">@Model.Summary</p>
+		<a class="text-info text-capitalize" asp-controller="Home" asp-action="Index">
 			back to products
 		</a>
 	</div>
