@@ -126,6 +126,29 @@ public class HomeController : Controller
 
 
 
+	public async Task<IActionResult> Delete(Guid id)
+	{
+		var product = await _service.GetProductByIdAsync(id);
+		if (product is null)
+		{
+			throw new AppException("No product found with that ID.", 404);
+		}
+		return View(product);
+	}
+
+	[HttpPost, ActionName("Delete")]
+	public async Task<IActionResult> DeletePost(Guid id)
+	{
+		var product = await _service.GetProductByIdAsync(id);
+		if (product is null)
+		{
+			throw new AppException("No product found with that ID.", 404);
+		}
+		await _service.DeleteProductByIdAsync(id);
+		return RedirectToAction("Index");
+	}
+
+
 	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 	public IActionResult Error()
 	{
