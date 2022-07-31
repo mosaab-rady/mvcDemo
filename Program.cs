@@ -20,6 +20,7 @@ builder.Services.AddDbContext<PostgresContext>(options =>
 );
 
 builder.Services.AddScoped<IProductsService, PostgresProductsService>();
+builder.Services.AddScoped<IUsersService, PostgresUsersService>();
 
 var app = builder.Build();
 

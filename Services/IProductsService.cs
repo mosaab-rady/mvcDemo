@@ -4,9 +4,9 @@ namespace mvcApp.Services;
 
 public interface IProductsService
 {
-	public Task<IEnumerable<Product>> GetAllProductsAsync();
-	public Task<Product?> GetProductByIdAsync(Guid Id);
-	public Task CreateProductAsync(Product product);
-	public Task UpdateProductByIdAsync(Guid Id, Product product);
-	public Task DeleteProductByIdAsync(Guid Id);
+	Task<IEnumerable<Product>> GetAllProductsAsync();
+	Task<Product?> GetProductByIdAsync(Guid Id);
+	Task CreateProductAsync(Product product);
+	Task UpdateProductByIdAsync(Guid Id, Product product);
+	Task DeleteProductByIdAsync(Guid Id);
 }

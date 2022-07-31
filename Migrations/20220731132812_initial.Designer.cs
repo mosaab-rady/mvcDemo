@@ -12,7 +12,7 @@ using mvcApp.Configurations;
 namespace mvcApp.Migrations
 {
     [DbContext(typeof(PostgresContext))]
-    [Migration("20220729154721_initial")]
+    [Migration("20220731132812_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,6 @@ namespace mvcApp.Migrations
                 .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("mvcApp.Models.Product", b =>
@@ -30,8 +29,7 @@ namespace mvcApp.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasDefaultValueSql("uuid_generate_v4()");
+                        .HasColumnName("id");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -53,10 +51,6 @@ namespace mvcApp.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_products");
-
-                    b.HasIndex(new[] { "Name" }, "ix_products_name")
-                        .IsUnique()
-                        .HasDatabaseName("ix_products_name");
 
                     b.ToTable("products", (string)null);
                 });
