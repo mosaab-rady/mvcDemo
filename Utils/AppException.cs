@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace razorWebApp.Utils;
+namespace mvcApp.Utils;
 
 public class AppException : Exception
 {
