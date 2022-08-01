@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using mvcApp.Configurations;
+using mvcApp.middleware;
 using mvcApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddTransient<IsLoggedInMiddleware>();
 
 // connect to database
 builder.Services.AddDbContext<PostgresContext>(options =>
@@ -38,6 +40,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseMiddleware<IsLoggedInMiddleware>();
 
 app.MapControllerRoute(
 		name: "default",
