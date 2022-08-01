@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -48,7 +49,6 @@ public class UsersController : Controller
 			Password = hashedPassword
 		};
 
-
 		try
 		{
 			var newUser = await _service.CreateUSerAsync(_user);
@@ -57,7 +57,7 @@ public class UsersController : Controller
 		}
 		catch (DbUpdateException err)
 		{
-			var error = (PostgresException?)err.InnerException;
+			var error = (PostgresException)err.InnerException;
 			if (error?.SqlState == "23505")
 			{
 				ModelState.AddModelError("Email", "A User with that Email already exist!. Please Use another Email address.");
@@ -89,6 +89,15 @@ public class UsersController : Controller
 		TempData["success"] = $"Logged In Successfully";
 		return RedirectToAction("Index", "Home");
 
+	}
+
+	[HttpPost]
+	public IActionResult Logout()
+	{
+		HttpContext.Response.Cookies.Delete("jwt");
+		TempData["danger"] = "Logged out!!";
+		TempData["user"] = null;
+		return RedirectToAction("Index", "Home");
 	}
 
 	private string createToken(User user)
