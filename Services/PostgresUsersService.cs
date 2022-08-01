@@ -22,7 +22,13 @@ public class PostgresUsersService : IUsersService
 
 	}
 
-	public async Task<User?> GetUserByEmailAsync(string? Email)
+	public async Task<User> GetUserByIdAsync(Guid id)
+	{
+		var user = await _context.Users.FindAsync(id);
+		return user;
+	}
+
+	public async Task<User> GetUserByEmailAsync(string Email)
 	{
 		var user = await _context.Users.SingleOrDefaultAsync(_ => _.Email == Email);
 
