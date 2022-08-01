@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using mvcApp.Models;
 using mvcApp.Services;
 using Npgsql;
-using razorWebApp.Utils;
+using mvcApp.Utils;
 
 namespace mvcApp.Controllers;
 
@@ -65,7 +65,7 @@ public class HomeController : Controller
 		}
 		catch (DbUpdateException err)
 		{
-			var error = (PostgresException?)err.InnerException;
+			var error = (PostgresException)err.InnerException;
 			if (error?.SqlState == "23505")
 			{
 				ModelState.AddModelError("Name", "A product with that name already exist. Please use another value");
@@ -114,7 +114,7 @@ public class HomeController : Controller
 		}
 		catch (DbUpdateException err)
 		{
-			var error = (PostgresException?)err.InnerException;
+			var error = (PostgresException)err.InnerException;
 			if (error?.SqlState == "23505")
 			{
 				ModelState.AddModelError("Name", "A product with that name already exist. Please use another value");
