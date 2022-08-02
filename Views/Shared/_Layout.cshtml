@@ -30,12 +30,17 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm  ">
                     <ul class="navbar-nav flex-grow-1 d-flex justify-content-between">
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                        <div class="d-flex gap-2">
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-controller="Fabrics" asp-action="Index">Fabrics</a>
+                            </li>
+                        </div>
                         @if (TempData["user"] is not null)
                         {
-                            <div class="d-flex">
+                            <div class="d-flex gap-2">
                                 <li class="nav-item">
                                     <a class="nav-link ">@user?.Email</a>
                                 </li>
@@ -48,7 +53,7 @@
                         }
                         else
                         {
-                            <div class="d-flex">
+                            <div class="d-flex gap-2 ">
                                 <li class="nav-item">
                                     <a class="nav-link " asp-area="" asp-controller="Users" asp-action="Login">login</a>
                                 </li>
