@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using mvcApp.Configurations;
@@ -12,9 +13,10 @@ using mvcApp.Configurations;
 namespace mvcApp.Migrations
 {
     [DbContext(typeof(PostgresContext))]
-    partial class PostgresContextModelSnapshot : ModelSnapshot
+    [Migration("20220802202326_addFabrics")]
+    partial class addFabrics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,10 +75,6 @@ namespace mvcApp.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<string>("FabricName")
-                        .HasColumnType("text")
-                        .HasColumnName("fabric_name");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -97,9 +95,6 @@ namespace mvcApp.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_products");
-
-                    b.HasIndex("FabricName")
-                        .HasDatabaseName("ix_products_fabric_name");
 
                     b.ToTable("products", (string)null);
                 });
@@ -143,16 +138,6 @@ namespace mvcApp.Migrations
                         .HasDatabaseName("ix_users_email");
 
                     b.ToTable("users", (string)null);
-                });
-
-            modelBuilder.Entity("mvcApp.Models.Product", b =>
-                {
-                    b.HasOne("mvcApp.Models.Fabric", "Fabric")
-                        .WithMany()
-                        .HasForeignKey("FabricName")
-                        .HasConstraintName("fk_products_fabrics_fabric_name");
-
-                    b.Navigation("Fabric");
                 });
 #pragma warning restore 612, 618
         }
