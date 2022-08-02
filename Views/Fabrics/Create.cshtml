@@ -1,0 +1,48 @@
+@model Fabric
+@{
+	ViewData["Title"] = "Create New Fabric";
+}
+
+<div class="d-flex justify-content-center">
+	<div class="col-4">
+		<form asp-controller="Fabrics" asp-action="Create" method="post">
+			<legend class="text-primary">Create New Fabric</legend>
+			<div class="form-group mt-2">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<label asp-for="WhyWeMadeThis" class="control-label"></label>
+				<textarea asp-for="WhyWeMadeThis" class="form-control" rows="3"></textarea>
+				<span asp-validation-for="WhyWeMadeThis" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<input type="checkbox" asp-for="Stretch" class="form-check-input" />
+				<label asp-for="Stretch" class="control-label"></label>
+				<span asp-validation-for="Stretch" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<input type="checkbox" asp-for="AntiBilling" class="form-check-input" />
+				<label asp-for="AntiBilling" class="control-label"></label>
+				<span asp-validation-for="AntiBilling" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<input type="checkbox" asp-for="ButterySoft" class="form-check-input" />
+				<label asp-for="ButterySoft" class="control-label"></label>
+				<span asp-validation-for="ButterySoft" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2 d-flex align-items-center justify-content-between ">
+				<input type="submit" value="Create" class="btn btn-primary" />
+				<a class="text-info text-capitalize" asp-controller="Home" asp-action="Index">
+					back to products
+				</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
