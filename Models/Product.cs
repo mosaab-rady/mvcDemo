@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace mvcApp.Models
 {
@@ -12,6 +13,9 @@ namespace mvcApp.Models
 		[Required]
 		public string Type { get; set; }
 		public string Summary { get; set; }
+		public string FabricName { get; set; }
+		[ForeignKey("FabricName")]
+		public Fabric Fabric { get; set; }
 	}
 }
 
@@ -21,5 +25,6 @@ public record CreateProduct(
 										[Required] string Name,
 										[Range(1, 1000)] decimal Price,
 										[Required] string Type,
-										string Summary
+										string Summary,
+										string FabricName
 										);
