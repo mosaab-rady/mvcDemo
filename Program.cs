@@ -23,6 +23,7 @@ builder.Services.AddDbContext<PostgresContext>(options =>
 
 builder.Services.AddScoped<IProductsService, PostgresProductsService>();
 builder.Services.AddScoped<IUsersService, PostgresUsersService>();
+builder.Services.AddScoped<IFabricService, PostgresFabricService>();
 
 var app = builder.Build();
 
