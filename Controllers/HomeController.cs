@@ -56,7 +56,8 @@ public class HomeController : Controller
 			Name = product.Name,
 			Price = product.Price,
 			Type = product.Type,
-			Summary = product.Summary
+			Summary = product.Summary,
+			FabricName = product.FabricName
 		};
 
 		try
@@ -69,6 +70,11 @@ public class HomeController : Controller
 			if (error?.SqlState == "23505")
 			{
 				ModelState.AddModelError("Name", "A product with that name already exist. Please use another value");
+				return View(product);
+			}
+			else if (error.SqlState == "23503")
+			{
+				ModelState.AddModelError("FabricName", "No Fabric with that Name. Please choose an existing Fabric OR create new fabric.");
 				return View(product);
 			}
 		}
@@ -107,6 +113,7 @@ public class HomeController : Controller
 		existingProduct.Price = product.Price;
 		existingProduct.Type = product.Type ?? existingProduct.Type;
 		existingProduct.Summary = product.Summary ?? existingProduct.Summary;
+		existingProduct.FabricName = product.FabricName ?? existingProduct.FabricName;
 
 		try
 		{
