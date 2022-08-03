@@ -23,7 +23,7 @@ public class PostgresProductsService : IProductsService
 	}
 	public async Task<Product> GetProductByIdAsync(Guid Id)
 	{
-		var product = await _context.Products.FindAsync(Id);
+		var product = await _context.Products.Include(p => p.Fabric).SingleOrDefaultAsync(p => p.Id == Id);
 		return product;
 	}
 
