@@ -12,6 +12,25 @@
 			<h3 class="text-primary ">$ @Model.Price</h3>
 		</div>
 		<p class="text-muted">@Model.Summary</p>
+		<div>
+			<h4><strong class="text-primary">Fabric:</strong> @Model.FabricName</h4>
+			<div>
+				<h4 class="text-primary">Why we made this:</h4>
+				<p class="text-muted">@Model.Fabric?.WhyWeMadeThis</p>
+			</div>
+			<div class="form-group mt-2">
+				<input disabled type="checkbox" asp-for="@Model.Fabric.AntiBilling" class="form-check-input" />
+				<label asp-for="@Model.Fabric.AntiBilling" class="control-label"></label>
+			</div>
+			<div class="form-group mt-2">
+				<input type="checkbox" asp-for="@Model.Fabric.ButterySoft" class="form-check-input" disabled />
+				<label asp-for="@Model.Fabric.ButterySoft" class="control-label"></label>
+			</div>
+			<div class="form-group mt-2">
+				<input disabled type="checkbox" asp-for="@Model.Fabric.Stretch" class="form-check-input" />
+				<label asp-for="@Model.Fabric.Stretch" class="control-label"></label>
+			</div>
+		</div>
 		<div class="d-flex justify-content-between align-items-center">
 			<div>
 				<a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
